@@ -1,0 +1,31 @@
+button {
+    background-color: #0055A5; 
+    color: #FFFFFF;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed), border var(--transition-speed);
+}
+
+button:hover {
+    border: 1px solid #FFA500;
+    background-color: #FFA500; 
+    box-shadow: var(--box-shadow), 0 0 15px #FFA500; 
+    transform: translateY(-3px);
+}
+
+.pagination-button {
+    background-color: #0055A5; 
+    color: #FFFFFF; 
+    font-weight: normal;
+    cursor: pointer;
+    transition: none;
+    border: none;
+    padding: 5px;
+}
+
+.pagination-button:hover {
+    border: none;
+    background-color: #FFA500; 
+    box-shadow: none;
+    transform: none;
+}

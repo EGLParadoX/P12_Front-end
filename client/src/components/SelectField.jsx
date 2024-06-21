@@ -1,24 +1,24 @@
-// SelectField.js
 import React from 'react';
+import { useField } from 'formik';
 
-const SelectField = ({ label, id, options, value, onChange, placeholder }) => (
-  <div>
-    <label htmlFor={id}>{label}</label>
-    <select
-      id={id}
-      value={value} // Maintenez cette prop pour un élément contrôlé
-      onChange={onChange}
-    >
-      {/* Option de placeholder rendue non sélectionnable */}
-      <option value="" disabled>{placeholder}</option>
+const SelectField = ({ label, options, ...props }) => {
+  const [field, meta] = useField(props);
+  const id = props.id || props.name;
 
-      {options.map(option => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
-  </div>
-);
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <select {...field} {...props} id={id}>
+        <option value="">{props.placeholder}</option>
+        {options.map(option => (
+          <option key={option} value={option}>{option}</option>
+        ))}
+      </select>
+      {meta.touched && meta.error ? (
+        <div className="error-message">{meta.error}</div>
+      ) : null}
+    </div>
+  );
+};
 
 export default SelectField;

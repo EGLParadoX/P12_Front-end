@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+    .container {
+      width: 90%;
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    table {
+      font-size: 14px;
+    }
+  }
+  
