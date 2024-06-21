@@ -42,7 +42,6 @@ const CreateEmployee = () => {
           const updatedEmployees = saveEmployeeToLocalStorage(values);
           dispatch(setEmployees(updatedEmployees));
           dispatch(addEmployee(values));
-          console.log('Employee added:', values);
           resetForm();
           setSubmitting(false);
           setIsOpen(true);
