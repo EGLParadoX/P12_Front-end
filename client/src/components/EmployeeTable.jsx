@@ -17,8 +17,10 @@ import {
   TextField
 } from '@mui/material';
 import { FirstPage, LastPage, KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterEmployees, setSearchTerm } from '../redux/action';
 
-const EmployeeTable = ({ employees, searchTerm, setSearchTerm }) => {
+const EmployeeTable = ({ employees }) => {
   const columns = React.useMemo(
     () => [
       { Header: 'First Name', accessor: 'firstName' },
@@ -34,6 +36,7 @@ const EmployeeTable = ({ employees, searchTerm, setSearchTerm }) => {
     []
   );
 
+  const filteredEmployees = useSelector(state => state.employees.filteredEmployees);
   const {
     getTableProps,
     getTableBodyProps,
@@ -51,18 +54,20 @@ const EmployeeTable = ({ employees, searchTerm, setSearchTerm }) => {
   } = useTable(
     {
       columns,
-      data: employees,
+      data: filteredEmployees,
       initialState: { pageIndex: 0, pageSize: 10 },
     },
     useSortBy,
     usePagination
   );
 
-  const handleSearchChange = useCallback((event) => {
-    setSearchTerm(event.target.value);
-  }, [setSearchTerm]);
+  const dispatch = useDispatch();
+  const searchTerm = useSelector(state => state.employees.searchTerm);
 
-  console.log('EmployeeTable rendered with', employees.length, 'employees');
+  const handleSearchChange = useCallback((event) => {
+    dispatch(setSearchTerm(event.target.value));
+    dispatch(filterEmployees(event.target.value));
+  }, [dispatch]); 
 
   return (
     <Box className="container">

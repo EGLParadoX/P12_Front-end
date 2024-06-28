@@ -1,6 +1,6 @@
 import { ADD_EMPLOYEE, SET_EMPLOYEES, FILTER_EMPLOYEES, SET_SEARCH_TERM } from '../redux/action';
 
-const initialState = {
+export const initialState = {
   employees: [],
   filteredEmployees: [],
   searchTerm: '',
