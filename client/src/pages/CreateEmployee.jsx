@@ -13,6 +13,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-cozyp-modal/dist/modal.css';
 import { addEmployee, setEmployees } from '../redux/action';
 
+
 const CreateEmployee = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -100,7 +101,10 @@ const CreateEmployee = () => {
         )}
       </Formik>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal 
+        isOpen={isOpen} 
+        onClose={() => setIsOpen(false)}
+      >
         <p>New Employee created!</p>
       </Modal>
       
