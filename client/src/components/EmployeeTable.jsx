@@ -25,9 +25,9 @@ const EmployeeTable = ({ employees }) => {
     () => [
       { Header: 'First Name', accessor: 'firstName' },
       { Header: 'Last Name', accessor: 'lastName' },
-      { Header: 'Start Date', accessor: 'startDate' },
+      { Header: 'Start Date', accessor: 'startDate', Cell: ({ value }) => value ? new Date(value).toLocaleDateString() : '' },
       { Header: 'Department', accessor: 'department' },
-      { Header: 'Date of Birth', accessor: 'dateOfBirth' },
+      { Header: 'Date of Birth', accessor: 'dateOfBirth', Cell: ({ value }) => value ? new Date(value).toLocaleDateString() : '' },
       { Header: 'Street', accessor: 'street' },
       { Header: 'City', accessor: 'city' },
       { Header: 'State', accessor: 'state' },
@@ -67,7 +67,7 @@ const EmployeeTable = ({ employees }) => {
   const handleSearchChange = useCallback((event) => {
     dispatch(setSearchTerm(event.target.value));
     dispatch(filterEmployees(event.target.value));
-  }, [dispatch]); 
+  }, [dispatch]);
 
   return (
     <Box className="container">

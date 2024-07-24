@@ -11,7 +11,7 @@ import { Modal } from 'react-cozyp-modal';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-cozyp-modal/dist/modal.css';
-import { addEmployee, setEmployees } from '../redux/action';
+import { setEmployees } from '../redux/action';
 
 
 const CreateEmployee = () => {
@@ -40,13 +40,13 @@ const CreateEmployee = () => {
         }}
         validationSchema={employeeValidationSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          const updatedEmployees = saveEmployeeToLocalStorage(values);
-          dispatch(setEmployees(updatedEmployees));
-          dispatch(addEmployee(values));
+          const storedEmployees = saveEmployeeToLocalStorage(values);
+          dispatch(setEmployees(storedEmployees));
           resetForm();
           setSubmitting(false);
           setIsOpen(true);
         }}
+        
       >
         {formik => (
           <Form>
